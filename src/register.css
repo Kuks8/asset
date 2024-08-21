@@ -1,0 +1,73 @@
+/* 
+.Register{
+  border: 1px solid #b6b6b6;
+  background-color: white;
+  width: 25rem;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  justify-content: center;
+  padding: 30px;
+  border-radius: 25px;
+}
+  
+.logo{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: auto;
+}
+
+.logo-img{
+  width: 195px;
+  height: 36px;
+}
+
+.Register hr{
+  width: 24rem;
+  margin-bottom: 31px;
+}
+.Register h2{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.Register form{
+  display: flex;
+  flex-direction: column;
+  gap: 27px;
+}
+
+.Register p{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.input_parent{
+
+  border: 1px solid black;
+  display: flex;
+  padding-block: 10px;
+  padding-inline: 10px;
+}
+
+.email{
+  border: 0;
+  flex: 1;
+}
+
+.Password{
+  border: 0;
+  flex: 1;
+}
+
+.Register-button{
+  background-color: rgb(94, 136, 235);
+  color: white;
+ border-radius: 8px;
+ border: 1px solid rgba(175, 175, 175, 0.163);
+ padding-block: 10px;
+} */
+  

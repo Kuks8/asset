@@ -1,0 +1,250 @@
+export const data = [
+  {
+    
+    name: "Macbookpro",
+    serialno: "sgdu638",
+    type: "Laptop",
+    model: "Apple",
+    // from: "Judah Nuer",
+    softwares: "Antivirus, IOS" ,
+    assign_status: "Assigned",
+    assigned_to: "Kukua Crentsil",
+    asset_status: "Faulty",
+    // date: "20/02/2024",
+    images: ["/macbook pro.jpeg", "/m3 macbook.jpeg"]
+  },
+  {
+   
+    name: "Macbookpro",
+    serialno: "kxkn28u",
+    type: "Laptop",
+    model: "Apple",
+    softwares: "Antivirus, IOS" ,
+    assign_status: "Not Assigned",
+    assigned_to: " ",
+    asset_status: "In Use",
+    // date: "21/02/2024",
+    images: ["/macbook pro.jpeg", "/m3 macbook.jpeg"]
+  },
+  {
+  
+    name: "Samsung",
+    serialno: "ydsi89",
+    type: "Phone",
+    model: "A15",
+    softwares: "Assigned" ,
+    assign_status: "Assigned",
+    assigned_to: "Kojo Antwi",
+    asset_status: "Faulty",
+    // date: "22/02/2024",
+    images: ["/Samsung A15.jpg", "/samsung 15.jpg"]
+  },
+  {
+   
+    name: "Samsung",
+    serialno: "ft678h",
+    type: "Phone",
+    model: "A22",
+    softwares: " " ,
+    assign_status: "Not Assigned",
+    assigned_to: " ",
+    asset_status: "Faulty",
+    // date: "23/02/2024",
+    images: ["/samsung a22.jpg", "/samsung 22.jpeg"]
+  },
+  {
+    
+    name: "Dell",
+    serialno: "hdju8i",
+    type: "Desktop",
+    model: " ",
+    softwares: "Antivirus " ,
+    assign_status: "Assigned",
+    assigned_to: "Judah Nuer",
+    asset_status: "In Use",
+    // date: "24/02/2024",
+    images: ["/dell.webp"]
+  },
+  {
+   
+    name: "Ipad",
+    serialno: "hdh78i",
+    type: "Tablet",
+    model: " ",
+    softwares: "Antivirus " ,
+    assign_status: "Assigned",
+    assigned_to: "Emmanuel Ossom",
+    asset_status: "Faulty",
+    // date: "25/02/2024",
+    images: ["/ipad.jpg"]
+  },
+  {
+  
+    name: "Ipad pro",
+    serialno: "hgdu79",
+    type: "Tablet",
+    model: " ",
+    softwares: "Antivirus " ,
+    assign_status: "Assigned",
+    assigned_to: "Seth Ackaah",
+    asset_status: "Faulty",
+    // date: "24/02/2024",
+    images: ["/ipad pro.webp"]
+  },
+  {
+    name: "macbook",
+    serialno: "sgdu638",
+    type: "Laptop",
+    model: "Apple",
+    // from: "Judah Nuer",
+    softwares: "Antivirus, IOS" ,
+    assign_status: "Faulty",
+    assigned_to: " ",
+    asset_status: "In Use",
+    // date: "25/02/2024",
+    images: ["/macbook pro.jpeg", "/m3 macbook.jpeg"]
+  },
+  {
+    name: "macbook pro",
+    serialno: "sgdu638",
+    type: "Laptop",
+    model: "Apple",
+    softwares: "Antivirus, IOS" ,
+    assign_status: "Not Assigned",
+    assigned_to: " ",
+    asset_status: "Faulty",
+    // date: "21/02/2024",
+    images: ["/macbook pro.jpeg", "/m3 macbook.jpeg"]
+  },
+  {
+    name: "Lenovo",
+    serialno: "kxkn28u",
+    type: "Laptop",
+    model: "Windows",
+    softwares: "Antivirus, IOS" ,
+    assign_status: "Not Assigned",
+    assigned_to: " ",
+    asset_status: "Faulty",
+    // date: "22/02/2024",
+    images: ["/thinkpad.jpg"]
+  },
+  {
+    serialno: "ydsi89",
+    type: "Phone",
+    model: "A15",
+    softwares: " " ,
+    assign_status: " Assigned",
+    assigned_to: "Kojo Antwi",
+    asset_status: "Faulty",
+    // date: "22/02/2024",
+    images: ["/Samsung A15.jpg", "/samsung 15.jpg"]
+  },
+  {
+    name: "Samsung",
+    serialno: "ft678h",
+    type: "Phone",
+    model: "A22",
+    softwares: " " ,
+    assign_status: "Assigned ",
+    assigned_to: "Seth Ackaah",
+    asset_status: "Faulty",
+    // date: "23/02/2024",
+    images: ["/samsung a22.jpg", "/samsung 22.jpeg"]
+  },
+  {
+    name: "Dell",
+    serialno: "hdju8i",
+    type: "Desktop",
+    model: " ",
+    softwares: "Antivirus " ,
+    assign_status: "Assigned",
+    assigned_to: "Judah Nuer",
+    asset_status: "In Use",
+    // date: "24/02/2024",
+    images: ["/dell.webp"]
+  },
+  {
+    name: "Ipad",
+    serialno: "hdh78i",
+    type: "Tablet",
+    model: " ",
+    softwares: "Antivirus " ,
+    assign_status: "Not Assigned",
+    assigned_to: " ",
+    asset_status: "Faulty",
+    // date: "25/02/2024",
+    images: ["/ipad.jpg"]
+  },
+  {
+    name: "Ipad pro",
+    serialno: "hgdu79",
+    type: "Tablet",
+    model: " ",
+    softwares: "Antivirus " ,
+    assign_status: "Assigned",
+    assigned_to: "Seth Ackaah",
+    asset_status: "Faulty",
+    // date: "24/02/2024",
+    images: ["/ipad pro.webp"]
+  },
+  {
+    name: "Lenovo",
+    serialno: "kxkn28u",
+    type: "Laptop",
+    model: "Windows",
+    softwares: "Antivirus, IOS" ,
+    assign_status: "Assigned",
+    assigned_to: "Emmanuel oj",
+    asset_status: "Faulty",
+    // date: "22/02/2024",
+    images: ["/thinkpad.jpg"]
+  },
+  {
+    name: "Dell",
+    serialno: "hdju8i",
+    type: "Desktop",
+    model: " ",
+    softwares: "Antivirus " ,
+    assign_status: "Assigned",
+    assigned_to: "Judah Nuer",
+    asset_status: "In Use",
+    // date: "24/02/2024",
+    images: ["/dell.webp"]
+  },
+  {
+    name: "Ipad",
+    serialno: "hdh78i",
+    type: "Tablet",
+    model: " ",
+    softwares: "Antivirus " ,
+    assign_status: "Assigned",
+    assigned_to: "Emmanuel Ossom",
+    asset_status: "Faulty",
+    // date: "25/02/2024",
+    images: ["/ipad.jpg"]
+  },
+  {
+    name: "Lenovo",
+    serialno: "kxkn28u",
+    type: "Laptop",
+    model: "Windows",
+    softwares: "Antivirus, IOS" ,
+    assign_status: "Assigned",
+    assigned_to: "Emmanuel oj",
+    asset_status: "Faulty",
+    // date: "22/02/2024",
+    images: ["/thinkpad.jpg"]
+  },
+  {
+    name: "Dell",
+    serialno: "hdju8i",
+    type: "Desktop",
+    model: " ",
+    softwares: "Antivirus " ,
+    assign_status: "Assigned",
+    assigned_to: " ",
+    asset_status: "In Use",
+    // date: "24/02/2024",
+    images: ["/dell.webp"]
+  },
+];

@@ -1,0 +1,183 @@
+/* body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  box-sizing: border-box;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+
+
+.App {
+  display: flex;
+  background-color: #629ad1;
+  position: fixed;
+  width: 100%;
+  height: 100vh;
+  justify-content: center;
+  align-items: center;
+} */
+
+.App{
+  background-color: rgb(60, 115, 223);
+  height: 100vh;
+  display: flex;
+ align-items: center;
+justify-content: center;
+}
+
+.Register{
+  border: 1px solid #b6b6b6;
+  background-color: white;
+  width: 25rem;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  justify-content: center;
+  padding: 30px;
+  border-radius: 25px;
+}
+
+.Register  .link-btn{
+  display: flex;
+  justify-content: center;
+}
+
+  
+.logo{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: auto;
+}
+
+.logo-img{
+  width: 195px;
+  height: 36px;
+}
+
+.Register hr{
+  width: 24rem;
+  margin-bottom: 31px;
+}
+/* .Register h2{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+} */
+
+.Register form{
+  display: flex;
+  flex-direction: column;
+  gap: 27px;
+}
+
+/* . p{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+} */
+
+.input_parent{
+
+  border: 1px solid black;
+  display: flex;
+  padding-block: 10px;
+  padding-inline: 10px;
+}
+
+.email{
+  border: 0;
+  flex: 1;
+}
+
+.Password{
+  border: 0;
+  flex: 1;
+}
+
+.button{
+  background-color: rgb(94, 136, 235);
+  color: white;
+ border-radius: 8px;
+ border: 1px solid rgba(175, 175, 175, 0.163);
+ padding-block: 10px;
+}
+.Login {
+  border: 1px solid #b6b6b6;
+  background-color: white;
+  width: 25rem;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  justify-content: center;
+  padding: 30px;
+  border-radius: 25px;
+}
+
+.Login hr{
+  width: 24rem;
+  margin-bottom: 31px;
+}
+
+.Login  .link-btn{
+  display: flex;
+  justify-content: center;
+}
+
+.App h2{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+}
+
+.Login form{
+  display: flex;
+  flex-direction: column;
+  gap: 27px;
+}
+
+.App p{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.input_parent{
+
+  border: 1px solid black;
+  display: flex;
+  padding-block: 10px;
+  padding-inline: 10px;
+}
+
+/* .email{
+  border: 0;
+  flex: 1;
+}
+
+.Password{
+  border: 0;
+  flex: 1;
+} */
+
+.button{
+  background-color: rgb(94, 136, 235);
+  color: white;
+ border-radius: 8px;
+ border: 1px solid rgba(175, 175, 175, 0.163);
+ padding-block: 10px;
+}
+
+.link-btn{
+ border: 0;
+ background-color: white;
+ text-decoration: underline;
+}
