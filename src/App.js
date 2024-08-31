@@ -10,8 +10,9 @@ import  Login  from "./login";
 import Dashboard from './dashboard';
 import Assets from './Components/assets';
 import Custodians from './Components/custodians';
-import GeneralSettings from './Components/generalsettings';
-import OtherSettings from './Components/othersettings';
+import Settings from './Components/settings';
+import AssignCustodian from './Components/Assigncustodian';
+import AssetType from './Components/assettype';
 import {AssetTypeProvider} from './Filters/assettypecontext';
 
 
@@ -36,8 +37,9 @@ function App() {
           <Route path='/dashboard' element={<Dashboard/>} />
           <Route path='/Components/assets' element={<Assets/>} />
           <Route path='/Components/custodians' element={<Custodians/>} />
-          <Route path='/Components/settings/general' element={<GeneralSettings/>} />
-          <Route path="/Components/settings/other" element={<OtherSettings />} />
+          <Route path='/Components/settings' element={<Settings/>} />
+          <Route path="/Components/type/asset" element={<AssetType/>} />
+          <Route path="/Components/custodian/assign" element={<AssignCustodian/>}/>
           <Route path='/register' element={<Register  onFormSwitch={toggleform}/>} />
           <Route
             path="/Register"

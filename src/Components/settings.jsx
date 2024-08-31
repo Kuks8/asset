@@ -8,7 +8,7 @@ import Sidebar from './Sidebar';
 import '../dashboard.css';
 // import AssetTypeContext from "../Filters/assettypecontext";
 
-const GeneralSettings = () => {
+const Settings = () => {
 const navigate = useNavigate(); 
 
 
@@ -196,4 +196,4 @@ const [newAssetType, setNewAssetType] = useState('');
 
 
 
-export default GeneralSettings;
+export default Settings;

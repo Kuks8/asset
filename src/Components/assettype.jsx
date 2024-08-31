@@ -7,7 +7,7 @@ import { faUserCircle } from '@fortawesome/free-solid-svg-icons';
 import '../dashboard.css';
 import Sidebar from './Sidebar';
 
-const OtherSettings = () => {
+const Assettype = () => {
     const navigate = useNavigate(); 
   const [form] = Form.useForm();
   const [assetTypes, setAssetTypes] = useState([]);
@@ -173,112 +173,5 @@ const OtherSettings = () => {
   );
 };
 
-export default OtherSettings;
+export default Assettype;
 
-// import React, {useState, useContext, createContext} from 'react';
-// import { Form, Input, Select, DatePicker, InputNumber, Upload, Button, Space, Avatar } from 'antd';
-// import { UploadOutlined, UserOutlined, PlusOutlined } from '@ant-design/icons';
-// import { useNavigate } from 'react-router-dom';
-// import {Card } from 'antd';
-// import {Flex, Tooltip} from 'antd';
-// import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-// import { faUserCircle } from '@fortawesome/free-solid-svg-icons';
-// import Sidebar from './Sidebar';
-// import '../dashboard.css';
-
-// const OtherSettings = () => {
-//     const navigate = useNavigate(); 
-    
-    
-//     const { Option } = Select;
-//     // const { assetTypes, setAssetTypes } = useContext(AssetTypeContext);
-//     const [profilePicture, setProfilePicture] = useState(null);
-//     const [newAssetType, setNewAssetType] = useState('');
-    
-    
-//       const onFinish = (values) => {
-//         console.log('Received values:', values);
-//       };
-    
-//       const handleUpload = (info) => {
-//         const reader = new FileReader();
-//         reader.onload = e => {
-//           setProfilePicture(e.target.result);
-//         };
-//         reader.readAsDataURL(info.file.originFileObj);
-//       };
-    
-//       const handleLogout = (e) => {
-//         e.preventDefault();
-       
-//         console.log('Logging out');
-//         navigate('/login');
-//       };
-    
-//       // const handleAddAssetType = () => {
-//       //   setAssetTypes([...assetTypes, newAssetType]);
-//       //   setNewAssetType('');
-//       // };
-    
-//       const columns = [
-//         {
-//           title: 'Asset Type',
-//           dataIndex: 'type',
-//           key: 'type',
-//         },
-//       ];
-    
-//       // const data = assetTypes.map((type, index) => ({ key: index, type }));
-    
-//       return (
-       
-//         <div className="dashboard_wrapper">
-//         <Sidebar/>
-            
-//             <div className="Header">
-//             <FontAwesomeIcon 
-//             icon={faUserCircle} 
-//             className="topnav-right" 
-//             onClick={handleLogout} 
-//           />
-//                   <h2 className="dashboard-h2">Asset Settings</h2>
-//             </div> 
-            
-//               <div className="dashboardpage"> 
-                
-//                 <div>
-//                 <Form.Item label="Add New Asset Type" className="item8">
-//                     <Space>  
-//                       <Input
-//                         value={newAssetType}
-//                         onChange={(e) => setNewAssetType(e.target.value)}
-//                         placeholder="Enter new asset type"
-//                         />
-                     
-//                       <Flex >
-//                         <Flex >
-//                            <div className="setbutton">
-//                           <Tooltip title="Add Asset Type" >
-//                       <Button type="default"  icon={<PlusOutlined /> }
-//                       // onClick={handleAddAssetType} 
-                      
-//                       />
-//                           </Tooltip>  
-//                           </div>
-//                       </Flex>
-//                       </Flex>
-                     
-//                      </Space>
-//                      </Form.Item>
-//                      </div>
-//             </div>
-//           </div>
-        
-//          );
-//         };  
-    
-    
-    
-    
-
-// export default OtherSettings;
