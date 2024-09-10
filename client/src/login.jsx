@@ -1,119 +1,5 @@
-// import React, { useState, useEffect } from "react";
-// import { NavLink, useNavigate } from "react-router-dom";
-// import { MdOutlineAlternateEmail } from "react-icons/md";
-// import { RiLockPasswordLine } from "react-icons/ri";
-// import explogo from "./img/explogo.png";
-// // import './login.css'
-// import './index.css';
-
-// const Login = (props) => {
-//   const [email_address, setEmail] = useState("");
-//   const [password, setPassword] = useState("");
-//   const navigate = useNavigate();
-
-
-//   const handleLogin = async (e) => {
-//     e.preventDefault();
-  
-//     const formData = new FormData();
-//     formData.append('email_address', email_address);
-//     formData.append('password', password);
-  
-//     try {
-//       const response = await fetch('http://localhost:8000/api/users.php?request=login', {
-//         method: 'POST',
-//         body: formData,
-//       });
-
-//       console.log('Response Status:', response.status);
-  
-//       if (!response.ok) {
-//         throw new Error(`HTTP error! status: ${response.status}`);
-//       }
-  
-//       const data = await response.json();
-//       console.log('Login response:', data);  // Debugging line
-  
-//       if (data.success) {
-//         console.log('Success: Navigating to /dashboard');
-//         navigate("/dashboard");
-//       } else {
-//         alert("Login failed: " + data.message);
-//       }
-//     } catch (error) {
-//       console.error('Error during login:', error);
-//       alert("An error occurred during login.");
-//     }
-//   };
-
-
-
-
-//   return (
-//  <div className="App">
-//      <div className="Login">
-
-// <div className="logo"><img src={explogo} alt="explogo" className="logo-img"/></div>
-
-// <h2>ASSET MANAGEMENT</h2>
-// <p>Welcome Back!</p>
-// <hr/>
-
-// <form onSubmit={handleLogin}>
-//   <div className="input_parent">
-//     <input
-//       value={email_address}
-//       onChange={(e) => setEmail(e.target.value)}
-//       type="email_address"
-//       placeholder="email_address"
-//       id="email_address"
-//       name="email_address"
-//       className="email_address"
-//     />
-//     <div className="icon_parent">
-//       <MdOutlineAlternateEmail className="icon" color="grey" />
-//     </div>
-//   </div>
-
-//   <div className="input_parent">
-//     <input
-//       value={password}
-//       onChange={(e) => setPassword(e.target.value)}
-//       type="password"
-//       placeholder="password"
-//       id="password"
-//       name="password"
-//       className="Password"
-//     />
-//     <div className="icon_parent">
-//       <RiLockPasswordLine className="icon" color="grey" />
-//     </div>
-//   </div>
-
-//   <button
-//     // onClick={handleNavigateToDashboard}
-//     type="submit"
-//     className=" button login-button"
-//   >
-//     Login
-//   </button>
-//   <NavLink
-//     className="link-btn"
-//     to="../Register"
-//   >
-//     {" "}
-//     Don't have an account? Register here.
-//   </NavLink>
-// </form>
-// </div>
-//  </div>
-   
-//   );
-// };
-// export default Login;
-
 import React, { useState } from "react";
-import { NavLink, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { MdOutlineAlternateEmail } from "react-icons/md";
 import { RiLockPasswordLine } from "react-icons/ri";
 import explogo from "./img/explogo.png";
@@ -147,8 +33,11 @@ const Login = (props) => {
       const data = await response.json();
       console.log('Login response:', data);  // Debugging line
 
-      if (data.code === 1) { // Assuming `data.code` should be 200 for successful login
-        console.log('Success: Navigating to /dashboard');
+      if (data.code === 1) {  // Check for successful login
+        const { roles } = data.data;  // Extract roles from session
+        console.log('User roles:', roles);
+
+
         navigate("/dashboard");
       } else {
         alert("Navigation failed: " + data.message);
