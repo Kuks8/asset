@@ -1,4 +1,7 @@
 <?php
+
+session_start();
+
 // required files (logic)
 require __DIR__ . '/../config/base_utility.php';
 require ROOT_PATH . 'config/env.php';

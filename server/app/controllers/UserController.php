@@ -1,6 +1,6 @@
 <?php
 
-class UserController {
+class UserController { 
     private $userModel;
 
     
@@ -14,7 +14,11 @@ class UserController {
         $emailAddress = getRequestValue(REQ_POST, "email_address", "Please enter email address");
         $userPassword = getRequestValue(REQ_POST, "password", "invalid entry");
 
-        if(!empty($_SESSION)){
+        if (session_status() == PHP_SESSION_NONE) {
+            session_start();
+        }
+
+        if(!empty($_SESSION ['user_id'])){
             $responseData = resultStatus(0, 'Already logged in!');
             sendOutput($responseData, HTTP_200);
         } 
@@ -27,48 +31,58 @@ class UserController {
             sendOutput($responseData, HTTP_400);
         }
 
+        ob_start();
         // verify user login credentials
         $userData = $this->userModel->getUserByEmail($emailAddress);
        
-
         if(is_array($userData) && count($userData)){
             $emailAddress = $userData['email_address'];
             $encryptedPassword = $userData['encrypted_password'];
             $passwordSalt = $userData['password_salt'];
             // $roles_id = $roles['roles_id'];
 
-
             if(!($encryptedPassword === md5($passwordSalt.$userPassword))){
                 $responseData = resultStatus(0, 'Wrong username and/or password.');
                 sendOutput($responseData, HTTP_400);
             } 
-
             // set session
             $userID = $userData['id'];
             $employeeID = $userData['employee_id'];
             $emailAddress = $userData['email_address'];
             $ipAddress = $_SERVER['REMOTE_ADDR'];
             
-
             $_SESSION['user_id'] = $userID;
             $_SESSION['email_address'] = $emailAddress;
             $_SESSION['employee_id'] = $employeeID;
             $_SESSION['ip_address'] = $ipAddress;
 
+            ini_set("error_log", "/Users/kukua/Desktop/Kukua Project/my-app/server/error.log");
+            error_log("hghghg".$userID);
+            
              $roles = $this->userModel->getUserRoles($userID);
             $_SESSION['roles'] = array_column($roles, 'role_type');
-            // $roles = $this->userModel->getUserRoles($userID);
-            // if ($roles !== false) {
-            //     $_SESSION['role_types'] = $roles;
-            // } else {
-            //     $_SESSION['role_types'] = []; // If no roles found
-            // }
-    
-
-            if(!isset($_SESSION)){
-                $responseData = resultStatus(1, 'Oops! Something went wrong. Kindly login again after sometime.');
-                sendOutput($responseData, HTTP_500);
+            
+            if ($userID !== null) {
+            
+                $exptime = time() + (86400 * 30);
+               
+            
+                // Store all cookie data as a JSON string
+                $cookies = json_encode([
+                    'user_id' => $userID,
+                    'email_address' => $emailAddress,
+                    'employee_id' => $employeeID,
+                    'ip_address' => $ipAddress
+                ]);
+            
+                // Set the cookie with the JSON string
+                setcookie('user_data', $cookies, $exptime, '/', '', false);
             }
+            // print_r(headers_list());
+            // if(!isset($_SESSION)){
+            //     $responseData = resultStatus(1, 'Oops! Something went wrong. Kindly login again after sometime.');
+            //     sendOutput($responseData, HTTP_500);
+            // }
 
             // log signin
             $setLogins = $this->userModel->setLogins($userID, $employeeID);
@@ -81,6 +95,7 @@ class UserController {
 			$responseData = resultStatus(0, 'Sorry, user does not exist!');
             sendOutput($responseData, HTTP_401);
         }
+        ob_end_flush();
     }
 
 
@@ -154,10 +169,18 @@ class UserController {
         if(empty($_SESSION)){
             $responseData = resultStatus(0, 'Already logged out!');
             sendOutput($responseData, HTTP_200);
-        } elseif(session_destroy()){
+        } else{
+            // Clear all session variables
+            session_unset();
+        if(session_destroy()){
             $responseData = resultStatus(1, 'Logout is successful!');
             sendOutput($responseData, HTTP_200);
+        } else {
+            // If session_destroy() fails for some reason
+            $responseData = resultStatus(0, 'Logout failed, please try again.');
+            sendOutput($responseData, HTTP_500);
         }
     }
 }
 
+}

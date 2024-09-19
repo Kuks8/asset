@@ -41,15 +41,28 @@ class UserModel {
                   WHERE user_id = :user_id";
        $stmt = $this->db->prepare($query);
 
-       // Bind parameters
-       $stmt->bindParam(':user_id', $userId, PDO::PARAM_INT);
-   
-       // Execute the statement
-       $stmt->execute();
-   
-       // Fetch all results
-       return $stmt->fetchAll(PDO::FETCH_ASSOC);
-   }
+       try {
+        $stmt->bindParam(':user_id', $userId, PDO::PARAM_INT);
+        $stmt->execute();
+
+        // Fetch all results
+        $roles = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+        // Check if roles were found
+        if ($roles && count($roles) > 0) {
+            return $roles;
+        } else {
+            // Return an empty array if no roles were found
+            return [];
+        }
+    } catch (PDOException $e) {
+        // Log the error message if necessary and return false or empty array to signal failure
+        error_log("Error fetching user roles: " . $e->getMessage());
+        return [];
+    }
+}
+
+
     
 
 

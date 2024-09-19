@@ -2,15 +2,14 @@ import React from 'react';
 import explogo from '../img/explogo.png';
 import { Link, useLocation } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import {faHome, faTachometer, faLaptop, faUsers, faSliders, faSearch, faChevronRight} from '@fortawesome/free-solid-svg-icons';
+import {faHome, faTachometer, faLaptop, faSliders, faChevronRight} from '@fortawesome/free-solid-svg-icons';
 import{useState, useEffect} from 'react';
     
     const Sidebar = () => {
       const location = useLocation();
       const [custodiansOpen, setCustodiansOpen] = useState(false);
       const [assetsOpen, setAssetsOpen] = useState(false);
-      const [HasRoleType, setHasRoleType] = useState(false);
-      // const [isRegisterVisible, setIsRegisterVisible] = useState(false);
+      const [isSystemAdmin, setIsSystemAdmin] = useState(false);
 
       const toggleCustodians = () => {
         setCustodiansOpen(!custodiansOpen);
@@ -21,26 +20,23 @@ import{useState, useEffect} from 'react';
       }
 
       useEffect(() => {
-        const fetchUserRoles = async () => {
-          try {
-            const response = await fetch('http://localhost:8000/api/users.php'); 
-            const data = await response.json();
-            
-            // Check if roles array exists and contains role_type
-            if (data.roles && data.roles.length > 0) {
-              setHasRoleType(data.roles); // The user has a role_type
-            } else {
-              setHasRoleType([]); // The user does not have a role_type
-            }
-          } catch (error) {
-            console.error('Error fetching user roles:', error);
-            setHasRoleType([]); // In case of error, don't show the register link
+        // Get the roles from sessionStorage
+        const storedRoles = sessionStorage.getItem('userRoles');
+        console.log('Stored roles in sessionStorage:', storedRoles);  
+      
+        if (storedRoles) {
+          const roles = JSON.parse(storedRoles);
+          console.log('Parsed roles:', roles);  
+      
+          // Check if roles include "SYSTEM_ADMIN"
+          if (roles.includes('SYSTEM_ADMIN')) {
+            setIsSystemAdmin(true);
+            console.log("User is a system admin");  
           }
-        };
-    
-        fetchUserRoles();
+        }
       }, []);
-
+      
+      
       
 
       return (
@@ -80,11 +76,7 @@ import{useState, useEffect} from 'react';
             )}
           </li>
 
-          
-            {/* <li className={location.pathname === '/Components/custodians' ? 'active' : ''}>
-          <Link to="/Components/custodians">
-          <FontAwesomeIcon icon={faUsers} className="fa-icon"/>CUSTODIANS</Link>
-          </li> */}
+    
           <li
             onMouseEnter={toggleCustodians}
             onMouseLeave={toggleCustodians}
@@ -111,20 +103,14 @@ import{useState, useEffect} from 'react';
                    <FontAwesomeIcon icon={faSliders} className="fa-icon1" /> SETTINGS</Link>
                  </li>
         
-                 {/* {isRegisterVisible && (
-            <li className={location.pathname === '/register' ? 'active' : ''}>
-              <Link to="/register">
-                <FontAwesomeIcon icon={faSliders} className="fa-icon1" /> REGISTER
-              </Link>
-            </li>
-          )} */}
-          {HasRoleType.length > 0 && ( 
+        
+          {isSystemAdmin && ( 
             <li className={location.pathname === '/register' ? 'active' : ''}>
                    <Link to="/register">
                    <FontAwesomeIcon icon={faSliders} className="fa-icon1" /> REGISTER</Link>
                  </li>
           
-            )}
+           )}
           </ul>
           </div>
 

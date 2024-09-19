@@ -5,9 +5,10 @@ import { RiLockPasswordLine } from "react-icons/ri";
 import explogo from "./img/explogo.png";
 import './index.css';
 
-const Login = (props) => {
+const Login = () => {
   const [email_address, setEmail] = useState("");
   const [password, setPassword] = useState("");
+
   const navigate = useNavigate();
 
   const handleLogin = async (e) => {
@@ -34,9 +35,14 @@ const Login = (props) => {
       console.log('Login response:', data);  // Debugging line
 
       if (data.code === 1) {  // Check for successful login
-        const { roles } = data.data;  // Extract roles from session
-        console.log('User roles:', roles);
+        const { user_id, email_address, employee_id, ip_address, roles } = data.data;  
+        // console.log('User roles:', roles);
 
+        sessionStorage.setItem('user_id', user_id);
+        sessionStorage.setItem('email_address', email_address);
+        sessionStorage.setItem('employee_id', employee_id);
+        sessionStorage.setItem('ip_address', ip_address);
+        sessionStorage.setItem('userRoles', JSON.stringify(roles));
 
         navigate("/dashboard");
       } else {
@@ -94,12 +100,7 @@ const Login = (props) => {
           >
             Login
           </button>
-          {/* <NavLink
-            className="link-btn"
-            to="/register"  // Changed relative path to absolute path
-          >
-            Don't have an account? Register here.
-          </NavLink> */}
+          
         </form>
       </div>
     </div>
