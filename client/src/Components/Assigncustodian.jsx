@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUserCircle } from '@fortawesome/free-solid-svg-icons';
@@ -7,14 +7,33 @@ import { UploadOutlined } from '@ant-design/icons';
 import '../dashboard.css';
 import Sidebar from './Sidebar';
 
+
+const getCookie = (name) => {
+  const value = `; ${document.cookie}`;
+  const parts = value.split(`; ${name}=`);
+  if (parts.length === 2) return parts.pop().split(';').shift();
+};
+
 const AssignCustodian = () => {
     const navigate = useNavigate(); 
     const [form] = Form.useForm();
     const { Option } = Select;
 
+    const [isHovered, setIsHovered] = useState(false);
+const [userData, setUserData] = useState({
+  email_address: "Guest"
+});
+
+    useEffect(() => {
+      const userCookie = getCookie('user_data');
+      if (userCookie) {
+        const parsedUserData = JSON.parse(userCookie);
+        setUserData(parsedUserData);  // Update state with the parsed cookie data
+      }
+    }, []);
+
     const handleLogout = (e) => {
         e.preventDefault();
-      
        console.log('Logging out');
         navigate('/login');
      };
@@ -24,14 +43,6 @@ const AssignCustodian = () => {
         form.resetFields();
       };
 
-      useEffect(() => {
-        // Make API call to PHP endpoint
-        fetch('http://localhost/Api/.php')
-          .then(response => response.json())
-          .then(data => setUsers(data))
-          .catch(error => console.error('Error fetching users:', error));
-      }, []);
-    
 
 
     return (
@@ -39,11 +50,24 @@ const AssignCustodian = () => {
         <Sidebar/>
 
         <div className="Header">
+        <div
+        onMouseEnter={() => setIsHovered(true)}  // Show the menu when hovered
+        onMouseLeave={() => setIsHovered(false)}  // Hide the menu when hover stops
+        >
+       
+      
         <FontAwesomeIcon 
         icon={faUserCircle} 
         className="topnav-right" 
         onClick={handleLogout} 
       />
+      </div>
+      {isHovered && (
+                    <div className="menu-content"  style={{ float: 'right', height: '25px' }}>
+                        <span>{userData.email_address}</span>  {/* Display user's email */}
+                        
+                    </div>
+                )}
               <h2 className="dashboard-h2">Assign Custodian</h2>
         </div> 
 

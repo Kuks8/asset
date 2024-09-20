@@ -2,11 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import Sidebar from "./Sidebar";
 import { Table, Button, Flex, Tooltip, pagination } from "antd";
-import {
-  MenuUnfoldOutlined,
-  PlusOutlined,
-  BarsOutlined,
-} from "@ant-design/icons";
+import {PlusOutlined, BarsOutlined,} from "@ant-design/icons";
 import { Card, Space } from "antd";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSearch, faUserCircle } from "@fortawesome/free-solid-svg-icons";
@@ -16,17 +12,18 @@ import Userformfilter from "../Filters/userformfilter";
  import Userassetmodal from "../Filters/ userassetinfo";
 import Usersort from "../Filters/usersort";
 
-
-
-
-
+const getCookie = (name) => {
+  const value = `; ${document.cookie}`;
+  const parts = value.split(`; ${name}=`);
+  if (parts.length === 2) return parts.pop().split(';').shift();
+};
 
 const Custodians = () => {
   const [selectedrow, setSelectedRow] = useState();
   const [map, setMap] = useState();
   const [open, setOpen] = useState(false);
    
-  const [openUsersortModal, setUsersortModal] = useState(false)
+  const [openUsersortModal, setUsersortModal] = useState(false);
 
   const showUserformfilter = () => {
     console.log("button clicked");
@@ -49,6 +46,18 @@ const Custodians = () => {
   };
 
   const navigate = useNavigate();
+  const [isHovered, setIsHovered] = useState(false);
+  const [userData, setUserData] = useState({
+    email_address: "Guest"
+  });
+
+  useEffect(() => {
+    const userCookie = getCookie('user_data');
+    if (userCookie) {
+      const parsedUserData = JSON.parse(userCookie);
+      setUserData(parsedUserData);  // Update state with the parsed cookie data
+    }
+  }, []);
 
   const handleLogout = (e) => {
     e.preventDefault();
@@ -94,20 +103,6 @@ const Custodians = () => {
       key: "department",
     },
   ];
-    
- 
-  useEffect(() => {
-    // Make API call to PHP endpoint
-    fetch('http://localhost/Api/.php')
-      .then(response => response.json())
-      .then(data => setUsers(data))
-      .catch(error => console.error('Error fetching users:', error));
-  }, []);
-
-  
-  
-
-
 
   return (
     <div className="dashboard_wrapper">
@@ -122,11 +117,22 @@ const Custodians = () => {
       <Sidebar />
 
       <div className="Header">
+        <div
+         onMouseEnter={() => setIsHovered(true)}  // Show the menu when hovered
+         onMouseLeave={() => setIsHovered(false)}  // Hide the menu when hover stops
+        >
       <FontAwesomeIcon 
         icon={faUserCircle} 
         className="topnav-right" 
         onClick={handleLogout} 
       />
+      </div>
+      {isHovered && (
+                    <div className="menu-content"  style={{ float: 'right', height: '25px' }}>
+                        <span>{userData.email_address}</span>  {/* Display user's email */}
+                        
+                    </div>
+                )}
         <h2 className="dashboard-h2">Custodians</h2>
       </div>
 

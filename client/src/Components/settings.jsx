@@ -8,9 +8,19 @@ import Sidebar from './Sidebar';
 import '../dashboard.css';
 // import AssetTypeContext from "../Filters/assettypecontext";
 
+const getCookie = (name) => {
+  const value = `; ${document.cookie}`;
+  const parts = value.split(`; ${name}=`);
+  if (parts.length === 2) return parts.pop().split(';').shift();
+};
+
 const Settings = () => {
 const navigate = useNavigate(); 
 
+const [isHovered, setIsHovered] = useState(false);
+const [userData, setUserData] = useState({
+  email_address: "Guest"
+});
 
 const { Option } = Select;
 // const { assetTypes, setAssetTypes } = useContext(AssetTypeContext);
@@ -30,6 +40,14 @@ const [newAssetType, setNewAssetType] = useState('');
     reader.readAsDataURL(info.file.originFileObj);
   };
 
+  useEffect(() => {
+    const userCookie = getCookie('user_data');
+    if (userCookie) {
+      const parsedUserData = JSON.parse(userCookie);
+      setUserData(parsedUserData);  // Update state with the parsed cookie data
+    }
+  }, []);
+
   const handleLogout = (e) => {
     e.preventDefault();
    
@@ -47,13 +65,6 @@ const [newAssetType, setNewAssetType] = useState('');
     },
   ];
 
-  useEffect(() => {
-    // Make API call to PHP endpoint
-    fetch('http://localhost/Api/.php')
-      .then(response => response.json())
-      .then(data => setUsers(data))
-      .catch(error => console.error('Error fetching users:', error));
-  }, []);
 
 
   return (
@@ -62,11 +73,23 @@ const [newAssetType, setNewAssetType] = useState('');
     <Sidebar/>
         
         <div className="Header">
+        <div
+        onMouseEnter={() => setIsHovered(true)}  // Show the menu when hovered
+        onMouseLeave={() => setIsHovered(false)}  // Hide the menu when hover stops
+        >
         <FontAwesomeIcon 
         icon={faUserCircle} 
         className="topnav-right" 
         onClick={handleLogout} 
       />
+      </div>
+
+      {isHovered && (
+                    <div className="menu-content"  style={{ float: 'right', height: '25px' }}>
+                        <span>{userData.email_address}</span>  {/* Display user's email */}
+                        
+                    </div>
+                )}
               <h2 className="dashboard-h2">General Settings</h2>
         </div> 
         
